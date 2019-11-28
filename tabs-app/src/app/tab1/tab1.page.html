@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Accueil
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding">
+  
+  <!-- <ion-button expand="block">Bandeau déroulant</ion-button> -->
+  <div class="main-container">
+    <div>
+      <p>Voici un premier bouton pour naviguer :</p>
+    </div>
+    <ion-button (click)="presentAlert()">
+      <ion-icon name="checkmark-circle"></ion-icon>
+       <p> Passer à la suite </p>
+    </ion-button>
+  </div>
+</ion-content>

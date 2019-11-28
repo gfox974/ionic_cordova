@@ -1,0 +1,84 @@
+Ionic / cordova + angular
+
+applis : web / native / hybrides
+
+Howto :
+
+https://ionicframework.com/docs/installation/cli
+
+maquettes des projets a faire :
+https://www.figma.com/file/5XA7DA9D69CtrREblIV1Vl/Tabs?node-id=0%3A1
+
+( fonctionne sur le meme modele qu'angular, et peut tourner en react )
+
+Installation de l'environnement pour pouvoir lancer l'application sur son android.
+Les instructions sont ici : https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html
+ou ici : https://ionicframework.com/docs/installation/android
+
+L'installation sur windows ou macos est similaire, mais les emplacements sont différents
+1/ Installer le Java Development Kit (JDK)
+	Emplacement : C:\Program Files\Java\jdk1.8.0_231\
+2/ Installer Gradle
+	Sur la page https://gradle.org/install/, voir la section "Installing manually"
+	Download binary-only est suffisant
+3/ Installer l'Android SDK
+	Emplacement : C:\Users\Etudiant\AppData\Local\Android\Sdk
+
+
+Modifier les variables d'environnement du système :
+
+Dans la recherche windows taper : "env" et sélectionner "Modifier les variables d'environnement système"
+Ensuite cliquer sur "Variables d'environnement"
+Puis dans la partie "Variable système" cliquer sur "Nouvelle"
+	Nom : JAVA_HOME, Valeur : C:\Program Files\Java\jdk1.8.0_231\
+Et une deuxième
+	Nom : ANDROID_HOME, Valeur : C:\Users\[nom]\AppData\Local\Android\Sdk
+		remplacer [nom] par votre nom d'utilisateur
+
+Modifier la variable s'environnement "Path" :
+Cliquer sur cette variable "Path" puis sur modifier
+Ajouter les valeurs suivantes une par une en appuyant à chaque fois sur "Nouveau" :
+	C:\Gradle\gradle-6.0.1\bin (ici la version peut changer)
+	%JAVA_HOME%\bin
+	%ANDROID_HOME%\build-tools\29.0.2 (ici la version peut changer)
+	%ANDROID_HOME%\tools
+	%ANDROID_HOME%\tools\bin
+	%ANDROID_HOME%\platform-tools
+
+
+Ouvrir une nouvelle invite de commande (pour que les présédents changements soient pris en compte)
+Dans votre projet Ionic ajouter la plateform android:
+	ionic cordova platform add android
+
+
+Lancer l'application sur son téléphone android:
+
+Il faut activer le debogage usb sur son téléphone:
+	https://lecrabeinfo.net/activer-debogage-usb-android-xiaomi-miui-activate-usb-debugging.html
+
+Ensuite connecter son téléphone android à son ordinateur et lancer :
+	ionic cordova run android
+	(Ici il se peut qu'il y ait une erreur de plateform Android SDK. 
+	Dans ce cas, ouvrir Android Studio puis aller en bas dans "Configure" puis "SDK Manager",
+	et installer celui qui est manquant : par exemple ANDROID API Level 28)
+
+
+Créer l'apk non signé:
+	ionic cordova build android --prod --release
+	L'apk est placé dans platforms/android/app/build/outputs/apk/release : 
+	copier app-release-unsigned.apk et le placer à la racine du projet c'est à dire au même niveau que "src" par exemple
+
+
+Créer une version pour mettre sur le play store :
+1/ Créer une clé de signature
+	keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+	(Faire cela une seule fois pour chaque application)
+	(Ne pas oublier le mot de passe, sinon il ne sera pas possible de pousser une nouvelle version sur le store)
+
+2/ Signer l'application avec la clé
+D'abord faire passer l'apk non signé à la racine du projet.
+	jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore app-release-unsigned.apk alias_name
+
+3/ Optimiser et renommer
+	zipalign -v 4 app-release-unsigned.apk tabs-app.apk
+

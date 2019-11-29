@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Mes Films
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Barre de recherche -->
+  <!-- Default Searchbar -->
+  <ion-searchbar (ionChange)="changeSearch($event.detail.value)"></ion-searchbar>
+
+  <!-- List of Sliding Items -->
+  <ion-list>
+
+      <ion-item-sliding *ngFor="let movie of moviesFiltered">
+        <ion-item-options side="start">
+            <ion-item-option (click)="remove(movie)" color="danger">Supprimer</ion-item-option>
+        </ion-item-options>
+        <ion-item>
+          <ion-label>
+            <p>{{movie.title}}</p>
+            <p>{{movie.director}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+            <ion-item-option (click)="presentActionSheet()">Partager</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+  </ion-list>
+
+</ion-content>

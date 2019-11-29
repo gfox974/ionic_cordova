@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Images
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Default Searchbar -->
+  <ion-searchbar (ionChange)="changeSearch($event.detail.value)"></ion-searchbar>
+
+  <ion-item *ngFor="let item of hits">
+    <ion-thumbnail slot="start">
+      <img [src]="item.previewURL">
+    </ion-thumbnail>
+    <ion-label>
+      <h2> {{item.user}} </h2>
+      <h3> {{item.likes}} </h3>
+    </ion-label>
+  </ion-item>
+
+</ion-content>

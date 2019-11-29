@@ -11,6 +11,9 @@ https://www.figma.com/file/5XA7DA9D69CtrREblIV1Vl/Tabs?node-id=0%3A1
 
 ( fonctionne sur le meme modele qu'angular, et peut tourner en react )
 
+
+( ! on peut utiliser le tel comme display via l'usb, il faut activer le mode developpeur puis dans les options autoriser le debug usb, puis lancer le projet en mode : ionic cordova run android )
+
 Installation de l'environnement pour pouvoir lancer l'application sur son android.
 Les instructions sont ici : https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html
 ou ici : https://ionicframework.com/docs/installation/android
@@ -82,3 +85,13 @@ D'abord faire passer l'apk non signé à la racine du projet.
 3/ Optimiser et renommer
 	zipalign -v 4 app-release-unsigned.apk tabs-app.apk
 
+
+( prob certif a regler pour mon install a la mano )
+edit: done
+install a la mano ok :D
+( ne pas oublier de modifier le config.xml pour le build store, genre widget id= .. )
+
+
+APP2 -> "Places"
+figma : https://www.figma.com/file/Gfgw7M5U117HIbdoblvsmR/Lieux
+sidemenu

@@ -95,3 +95,25 @@ install a la mano ok :D
 APP2 -> "Places"
 figma : https://www.figma.com/file/Gfgw7M5U117HIbdoblvsmR/Lieux
 sidemenu
+
+ajout de plugins:
+( on va utiliser la camera : https://ionicframework.com/docs/native/camera )
+npm i -g cordova-res necessaire
+--> ionic cordova platform add android (android est le plugin -> fichier resources)
+
+install du plugin cam :
+ionic cordova plugin add cordova-plugin-camera
+
+puis config.xml : suivre la doc
+
+importer le plugin dans l'app.module -> providers ( voir camera )
+
+tester avec le hardwre -> ionic cordova run android --livereload
+( y'a des plugins pour tout : camera, gps, share ..)
+
+Idées suite places :
+ - se servir des lieux enregistrés pour build leur liste avec thumbs en section mes lieux
+	- lorsqu'on les selectionne, la section home est refresh avec les infos de celle selectionnée ( avec la possibilité de trier l'affichage via les types)
+	- si la geo etait activée, afficher sur une map la loc du lieu enregistrés
+
+( va falloir les stocker avec des id )
